@@ -1,12 +1,17 @@
 # Django Rest Framework (DRF) Course - Module 2
+
 This is my DRF course. I hope you like it.
 
 > These notes follow on from steps/module_1.md
-***
-***
+
+---
+
+---
 
 ## Current root directory
+
 Your root directory should look like the following.
+
 ```
 drf_course\  <--This is the root directory
     backend\
@@ -33,30 +38,34 @@ drf_course\  <--This is the root directory
     >README.md
     >server.py
 ```
+
 If in doubt, run the following git commands:
+
 ```
 git checkout module_2
 git pull origin module_2
 ```
 
 ## Steps/Commands
->Note: Please 'cd' into the root directory and fire up your virtual environment!
+
+> Note: Please 'cd' into the root directory and fire up your virtual environment!
 
 "Django makes it easier to build better web apps more quickly and with less code."
 
-In this module, we will be creating a Django application for our project. A Django application is a Python package that is specifically intended for use in a Django project. An application may use common Django conventions, such as having models, tests, urls, and views submodules. 
+In this module, we will be creating a Django application for our project. A Django application is a Python package that is specifically intended for use in a Django project. An application may use common Django conventions, such as having models, tests, urls, and views submodules.
 
 We will have 2 applications in our project:
 The first will be core. This application will hold the logic for our contact us endpoint.
 The second will be ecommerce. This app will hold the logic for our items and orders endpoints.
 Lets go ahead and create the core application.
 
-1) Applications - Open a terminal and use the following command to start a new application.
+1. Applications - Open a terminal and use the following command to start a new application.
+
 ```
 python manage.py startapp core
 ```
 
-2) Settings - We need to spend some time in the Django settings file to get everything working. For instance, DRF has a bunch of specific settings we need tweak.
+2. Settings - We need to spend some time in the Django settings file to get everything working. For instance, DRF has a bunch of specific settings we need tweak.
 
 imports: Replace the current import section with the following snippet of code. It will give us access to our environment variables.
 
@@ -68,6 +77,7 @@ load_dotenv()
 ```
 
 variables: Replace ALLOWED_HOSTS, SECRET_KEY and DEBUG with the following snippet.
+
 ```
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = int(os.environ.get("DEBUG", default=0))
@@ -75,6 +85,7 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 ```
 
 installed apps: Django will only know to include our new app in the project when we register it. Open drf_course/settings.py and register the new application in INSTALLED_APPS. Replace the current settings with the following snippet.
+
 ```
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,6 +100,7 @@ INSTALLED_APPS = [
     'core', # New app
 ]
 ```
+
 DRF: We can now add the following variable to our project to access DRF features.
 
 ```
@@ -117,7 +129,7 @@ REST_FRAMEWORK = {
 
 ```
 
-3) URL's - A clean, elegant URL scheme is an important detail in a high-quality web application. Django lets you design URLs however you want, with no framework limitations. To design URLs for an app, you create a Python module informally called a URLconf (URL configuration). This module is pure Python code and is a mapping between URL path expressions to Python functions (your views). Go ahead and open drf_course/urls.py (URLconf)and wire up the core application urls. Replace the code with the following snippet.
+3. URL's - A clean, elegant URL scheme is an important detail in a high-quality web application. Django lets you design URLs however you want, with no framework limitations. To design URLs for an app, you create a Python module informally called a URLconf (URL configuration). This module is pure Python code and is a mapping between URL path expressions to Python functions (your views). Go ahead and open drf_course/urls.py (URLconf)and wire up the core application urls. Replace the code with the following snippet.
 
 ```
 from django.urls import path
@@ -133,15 +145,17 @@ urlpatterns += [
 ]
 ```
 
-4) Migrations - Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. They’re designed to be mostly automatic, but you’ll need to know when to make migrations and when to run them. A new instance will always have a whole bunch of migrations waiting to be migrated. You can do this by running the following commands.
+4. Migrations - Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. They’re designed to be mostly automatic, but you’ll need to know when to make migrations and when to run them. A new instance will always have a whole bunch of migrations waiting to be migrated. You can do this by running the following commands.
 
 > Note: We are using the default db.sqlite3 database.
+
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
 You should see this log similar to the following.
+
 ```
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
@@ -166,12 +180,14 @@ Running migrations:
   Applying sessions.0001_initial... OK
 ```
 
-5) Local server - Django has a built in development server which is a lightweight web server written purely in Python. Django's development server allows us to develop things rapidly, without having to deal with configuring a production server – such as Apache – until you’re ready for production. Use the following command to start a local development server
+5. Local server - Django has a built in development server which is a lightweight web server written purely in Python. Django's development server allows us to develop things rapidly, without having to deal with configuring a production server – such as Apache – until you’re ready for production. Use the following command to start a local development server
+
 ```
 python manage.py runserver
 ```
 
 You should see this log.
+
 ```
 Watching for file changes with StatReloader
 Performing system checks...
@@ -185,15 +201,19 @@ Quit the server with CTRL-BREAK.
 ```
 
 You should now be up and running!
->Note: Open an incognito browser when testing your project (Ctrl + Shift + N)
 
-* Our DRF course API interface is accessible at [http://localhost:8000](http://localhost:8000)
+> Note: Open an incognito browser when testing your project (Ctrl + Shift + N)
 
-***
-***
+- Our DRF course API interface is accessible at [http://localhost:8000](http://localhost:8000)
+
+---
+
+---
 
 ## Root directory
->Note: If all went well, your root directory should now look like this
+
+> Note: If all went well, your root directory should now look like this
+
 ```
 drf_course\  <--This is the root directory
     backend\
@@ -232,5 +252,6 @@ drf_course\  <--This is the root directory
     >server.py
 ```
 
-***
-***
+---
+
+---
